@@ -12,7 +12,8 @@ INSTANCE=uva-teamcity-agent
 NAMESPACE=uvadave
 AGENT_COUNT=5
 
-TEAMCITY_HOST=http://teamcity.lib.virginia.edu:8080/
+#TEAMCITY_HOST=http://teamcity.lib.virginia.edu:8080/
+TEAMCITY_HOST=http://docker3.lib.virginia.edu:8080/
 HOST_FS=/shareddockerfs/teamcity/agents
 
 for agent in $(seq $AGENT_COUNT) ; do
@@ -24,5 +25,8 @@ done
 
 for agent in $(seq $AGENT_COUNT) ; do
    echo "starting agent ${agent}"
-   docker run -d --name agent${agent} -v $HOST_FS/${agent}:/data/teamcity_agent/conf -e SERVER_URL=$TEAMCITY_HOST $NAMESPACE/$INSTANCE
+   docker run -d --name agent${agent} \
+      -v $HOST_FS/conf/${agent}:/data/teamcity_agent/conf \
+      -v $HOST_FS/logs/${agent}:/opt/buildagent/logs \
+      -e SERVER_URL=$TEAMCITY_HOST $NAMESPACE/$INSTANCE
 done
