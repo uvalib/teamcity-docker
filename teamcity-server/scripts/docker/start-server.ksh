@@ -21,6 +21,7 @@ docker rm $INSTANCE
 
 echo "starting server..."
 docker run -d -p 8080:8111 --name $INSTANCE \
+   --log-opt tag=$INSTANCE \
    -e TEAMCITY_SERVER_MEM_OPTS="$TEAMCITY_SERVER_MEM_OPTS" \
    -v $HOST_FS/datadir:/data/teamcity_server/datadir \
    -v $HOST_FS/logs:/opt/teamcity/logs \
