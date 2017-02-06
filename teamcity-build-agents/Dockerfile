@@ -43,9 +43,8 @@ RUN mkdir /root/.docker
 COPY config/dockerhub-config.json /root/.docker/config.json
 
 # install docker binary
-COPY bin/docker-1.7.1 /usr/local/bin/
+COPY bin/docker /usr/local/bin/
 
 # create command links
-RUN ln -s /usr/local/bin/docker-1.7.1 /usr/local/bin/docker
 RUN ln -s /usr/local/go/bin/go /usr/local/bin/go
 RUN ln -s /usr/local/go/bin/gofmt /usr/local/bin/gofmt
