@@ -13,7 +13,7 @@ NAMESPACE=jetbrains
 HOST_FS=/shareddockerfs/teamcity
 
 # taken from blog pages
-TEAMCITY_SERVER_MEM_OPTS="-Xmx2g -XX:MaxPermSize=270m -XX:ReservedCodeCacheSize=350m" 
+TEAMCITY_SERVER_MEM_OPTS="-Xmx4g -XX:ReservedCodeCacheSize=350m" 
 
 echo "stopping server..."
 docker stop $INSTANCE
