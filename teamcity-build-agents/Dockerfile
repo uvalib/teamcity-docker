@@ -19,14 +19,14 @@ RUN /bin/bash -l -c "rvm requirements"
 RUN /bin/bash -l -c "rvm install 2.3.3"
 
 # install required build tools
-RUN apt-get -y install git wget tar vim libmysqlclient-dev
+RUN apt-get -y install git wget tar vim libmysqlclient-dev libltdl7
 
 # install java support tools
 #RUN apt-get -y install ant maven
 
 # install go
-RUN wget -c https://storage.googleapis.com/golang/go1.7.4.linux-amd64.tar.gz
-RUN tar -C /usr/local -xvzf go1.7.4.linux-amd64.tar.gz
+RUN wget -c https://storage.googleapis.com/golang/go1.8.1.linux-amd64.tar.gz
+RUN tar -C /usr/local -xvzf go1.8.1.linux-amd64.tar.gz
 RUN ln -s /lib/x86_64-linux-gnu/libdevmapper.so.1.02.1 /lib/x86_64-linux-gnu/libdevmapper.so.1.02
 
 # install the deploy scripting and keys
