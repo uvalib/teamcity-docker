@@ -45,6 +45,10 @@ COPY config/dockerhub-config.json /root/.docker/config.json
 # install docker binary
 COPY bin/docker /usr/local/bin/
 
+# install docker-compose
+run wget -c -O /usr/local/bin/docker-compose https://github.com/docker/compose/releases/download/1.14.0/docker-compose-`uname -s`-`uname -m`
+RUN chmod +x /usr/local/bin/docker-compose
+
 # create command links
 RUN ln -s /usr/local/go/bin/go /usr/local/bin/go
 RUN ln -s /usr/local/go/bin/gofmt /usr/local/bin/gofmt
