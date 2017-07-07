@@ -1,5 +1,5 @@
 if [ -z "$DOCKER_HOST" ]; then
-   echo "ERROR: no DOCKER_HOST defined"
+   echo "ERROR: no DOCKER_HOST defined, aborting"
    exit 1
 fi
 
