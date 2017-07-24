@@ -11,6 +11,9 @@ WORKDIR $AGENT_HOME
 # update the package list
 RUN apt-get -y update
 
+# install for nokogiti compatibility
+RUN apt-get install -y libxslt-dev libxml2-dev
+
 # install rvm
 RUN \curl -sSL https://get.rvm.io | /bin/bash -s stable
 
