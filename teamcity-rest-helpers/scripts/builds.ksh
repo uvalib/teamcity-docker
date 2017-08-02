@@ -8,6 +8,11 @@ FNAME=$(basename $0)
 # source common
 . $DIR/common.ksh
 
+if [ -z "$TEAMCITY_PROJECT" ]; then
+   echo "ERROR: no TEAMCITY_PROJECT defined, aborting"
+   exit 1
+fi 
+
 # results file
 RESFILE=/tmp/$FNAME.$$
 

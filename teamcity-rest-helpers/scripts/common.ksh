@@ -19,10 +19,10 @@ if [ -z "$TEAMCITY_API" ]; then
    exit 1
 fi 
 
-if [ -z "$TEAMCITY_PROJECT" ]; then
-   echo "ERROR: no TEAMCITY_PROJECT defined, aborting"
-   exit 1
-fi 
+#if [ -z "$TEAMCITY_PROJECT" ]; then
+#   echo "ERROR: no TEAMCITY_PROJECT defined, aborting"
+#   exit 1
+#fi 
 
 if [ -z "$TEAMCITY_USER" ]; then
    echo "ERROR: no TEAMCITY_USER defined, aborting"

@@ -14,7 +14,7 @@ RESFILE=/tmp/$FNAME.$$
 curl $BASIC_AUTH_OPTION -H "$ACCEPT_JSON_OPTION" "$TEAMCITY_API/projects" > $RESFILE 2>/dev/null
 exit_on_error $?
 
-cat $RESFILE | jq '.project[] | "\(.name)  id:\(.id)"' | tr -d "\"" | sort
+cat $RESFILE | jq '.project[] | "id:\(.id) => \(.name)"' | tr -d "\"" | sort
 rm $RESFILE > /dev/null 2>&1
 
 #
