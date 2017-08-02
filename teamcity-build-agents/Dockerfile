@@ -11,8 +11,10 @@ WORKDIR $AGENT_HOME
 # update the package list
 RUN apt-get -y update
 
-# install for nokogiti compatibility
+# install for nokogiri compatibility
 RUN apt-get install -y libxslt-dev libxml2-dev
+# For curb gem
+RUN apt-get install -y libcurl3-dev
 
 # install rvm
 RUN \curl -sSL https://get.rvm.io | /bin/bash -s stable
@@ -20,6 +22,7 @@ RUN \curl -sSL https://get.rvm.io | /bin/bash -s stable
 # install ruby
 RUN /bin/bash -l -c "rvm requirements"
 RUN /bin/bash -l -c "rvm install 2.3.3"
+RUN /bin/bash -l -c "rvm install ruby-1.9.3-p547"
 
 # install required build tools
 RUN apt-get -y install git wget tar vim libmysqlclient-dev libltdl7
