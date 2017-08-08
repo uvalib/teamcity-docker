@@ -23,7 +23,7 @@ do
     case $opt in
     *)
     SELECTED=$(echo $opt | tr "_" " ")
-    ID=$(grep "$SELECTED" $RESFILE | awk '{print $1}' | sed -e 's/^id://g')
+    ID=$(grep "${SELECTED}$" $RESFILE | awk '{print $1}' | sed -e 's/^id://g')
     echo "export TEAMCITY_PROJECT=$ID"
     break
     ;;
