@@ -19,7 +19,10 @@ RESFILE=/tmp/$FNAME.$$
 # maximum number of results to get
 MAX_COUNT=50
 
-curl $BASIC_AUTH_OPTION -H "$ACCEPT_JSON_OPTION" "$TEAMCITY_API/builds?locator=project:$TEAMCITY_PROJECT,count:$MAX_COUNT" > $RESFILE 2>/dev/null
+# expected build type, only the image builds are interesting
+BUILD_TYPE=${TEAMCITY_PROJECT}_BuildImage
+
+curl $BASIC_AUTH_OPTION -H "$ACCEPT_JSON_OPTION" "$TEAMCITY_API/builds?locator=project:$TEAMCITY_PROJECT,buildType:$BUILD_TYPE,count:$MAX_COUNT" > $RESFILE 2>/dev/null
 exit_on_error $?
 
 cat $RESFILE | jq '.build[] | "\(.number)  \(.id)"' | tr -d "\"" | sort -rn | awk '{printf "build-%s id:%s\n", $1, $2}'
