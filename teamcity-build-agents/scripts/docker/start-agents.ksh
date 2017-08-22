@@ -27,6 +27,7 @@ for agent in $(seq $AGENT_COUNT) ; do
    echo "starting agent ${agent}"
    docker run -d --name agent${agent} \
       --log-opt tag="agent${agent}" \
+      --restart=always \
       -v $HOST_FS/conf/${agent}:/data/teamcity_agent/conf \
       -v $HOST_FS/logs/${agent}:/opt/buildagent/logs \
       -e SERVER_URL=$TEAMCITY_HOST $NAMESPACE/$INSTANCE

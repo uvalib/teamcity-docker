@@ -29,6 +29,7 @@ docker rm ${agent}
 echo "starting ${agent}"
 docker run -d --name ${agent} \
    --log-opt tag="${agent}" \
+   --restart=always \
    -v $HOST_FS/conf/${1}:/data/teamcity_agent/conf \
    -v $HOST_FS/logs/${1}:/opt/buildagent/logs \
    -e SERVER_URL=$TEAMCITY_HOST $NAMESPACE/$INSTANCE
