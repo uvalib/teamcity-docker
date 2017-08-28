@@ -12,27 +12,19 @@ WORKDIR $AGENT_HOME
 RUN apt-get -y update
 
 # install for nokogiri compatibility
-RUN apt-get install -y libxslt-dev libxml2-dev
-# For curb gem
-RUN apt-get install -y libcurl3-dev
+RUN apt-get install -y libxslt-dev libxml2-dev libcurl3-dev git wget tar vim libmysqlclient-dev libltdl7
 
 # install rvm
 RUN \curl -sSL https://get.rvm.io | /bin/bash -s stable
 
 # install ruby
-RUN /bin/bash -l -c "rvm requirements"
+RUN /bin/bash -l -c "rvm requirements ruby-1.9.3-p551 ruby-2.3.3"
+RUN /bin/bash -l -c "rvm install ruby-1.9.3-p551"
 RUN /bin/bash -l -c "rvm install 2.3.3"
-RUN /bin/bash -l -c "rvm install ruby-1.9.3-p547"
-
-# install required build tools
-RUN apt-get -y install git wget tar vim libmysqlclient-dev libltdl7
-
-# install java support tools
-#RUN apt-get -y install ant maven
 
 # install go
-RUN wget -c https://storage.googleapis.com/golang/go1.8.3.linux-amd64.tar.gz
-RUN tar -C /usr/local -xvzf go1.8.3.linux-amd64.tar.gz && rm go1.8.3.linux-amd64.tar.gz
+RUN wget -c https://storage.googleapis.com/golang/go1.9.linux-amd64.tar.gz
+RUN tar -C /usr/local -xvzf go1.9.linux-amd64.tar.gz && rm go1.9.linux-amd64.tar.gz
 RUN ln -s /lib/x86_64-linux-gnu/libdevmapper.so.1.02.1 /lib/x86_64-linux-gnu/libdevmapper.so.1.02
 
 # install the deploy scripting and keys
