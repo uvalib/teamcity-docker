@@ -36,6 +36,7 @@ fi
 
 export BASIC_AUTH_OPTION="-u $TEAMCITY_USER:$TEAMCITY_PASSWORD"
 export ACCEPT_JSON_OPTION="Accept: application/json"
+export CONTENT_XML_OPTION="Content-Type: application/xml"
 
 #
 # end of file
