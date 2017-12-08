@@ -15,6 +15,7 @@ RUN apt-get -y update
 RUN apt-get install -y libxslt-dev libxml2-dev libcurl3-dev git wget tar vim libmysqlclient-dev libltdl7
 
 # install rvm
+RUN \curl -sSL https://rvm.io/mpapis.asc | gpg --import -
 RUN \curl -sSL https://get.rvm.io | /bin/bash -s stable
 
 # install ruby
@@ -36,9 +37,9 @@ RUN mkdir /root/.ssh
 COPY config/ssh-config /root/.ssh/config
 COPY config/ssh-known_hosts /root/.ssh/known_hosts
 
-# install dockerhub configuration stuf
+# install .docker configuration stuf
 RUN mkdir /root/.docker
-COPY config/dockerhub-config.json /root/.docker/config.json
+COPY config/dotdocker-config.json /root/.docker/config.json
 
 # install docker binary
 COPY bin/docker /usr/local/bin/
