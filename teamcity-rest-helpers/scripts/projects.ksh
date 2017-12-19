@@ -11,7 +11,9 @@ FNAME=$(basename $0)
 # results file
 RESFILE=/tmp/$FNAME.$$
 
-curl $BASIC_AUTH_OPTION -H "$ACCEPT_JSON_OPTION" "$TEAMCITY_API/projects" > $RESFILE 2>/dev/null
+CMD="curl $BASIC_AUTH_OPTION -H \"$ACCEPT_JSON_OPTION\" \"$TEAMCITY_API/projects\""
+#echo $CMD
+$CMD > $RESFILE 2>/dev/null
 exit_on_error $?
 
 cat $RESFILE | jq '.project[] | "id:\(.id) => \(.name)"' | tr -d "\"" | sort
