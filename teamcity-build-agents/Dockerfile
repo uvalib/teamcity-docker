@@ -9,10 +9,13 @@ WORKDIR $AGENT_HOME
 #
 
 # update the package list
-RUN apt-get -y update && apt-get install -y apt-transport-https
+RUN apt-get -y update && apt-get install -y apt-transport-https software-properties-common
+
+# install openjdk ppa for ancient java 7
+RUN add-apt-repository ppa:openjdk-r/ppa && apt-get -y update
 
 # install required build tools / nokogiri compatibility
-RUN apt-get install -y libxslt-dev libxml2-dev libcurl3-dev git wget tar vim libmysqlclient-dev libltdl7 --fix-missing
+RUN apt-get install -y libxslt-dev libxml2-dev libcurl3-dev git wget tar vim libmysqlclient-dev libltdl7 openjdk-7-jdk --fix-missing
 
 # install java support tools
 RUN apt-get install -y maven
