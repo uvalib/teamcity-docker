@@ -7,6 +7,8 @@ DIR=$(dirname $0)
 # source common
 . $DIR/common.ksh
 
+#set -x
+
 function release_notes {
    local title=$1
    local project=$2
@@ -15,6 +17,10 @@ function release_notes {
    echo
    echo "$title"
    echo $title | sed -e 's/./=/g'
+
+   #echo "Project: $project"
+   #echo "First: $first_build"
+   #echo "Last: $last_build"
 
    TEAMCITY_PROJECT=$project $DIR/changes_between.ksh $first_build $last_build
 }
@@ -56,6 +62,7 @@ DEPLOY_FILE=$1
 
 if [ ! -f $DEPLOY_FILE ]; then
    echo "ERROR: $DEPLOY_FILE is not available or readable, aborting"
+   echo "(deploy file is the output of version_would_deploy.ksh)"
    exit 1
 fi
 
