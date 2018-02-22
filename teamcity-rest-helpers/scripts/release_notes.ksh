@@ -55,6 +55,7 @@ function notes_if_deploying {
 
 if [ $# -ne 1 ]; then
    echo "ERROR: deploy file not specified, aborting"
+   echo "(deploy file is the output of version_would_deploy.ksh)"
    exit 1
 fi
 
