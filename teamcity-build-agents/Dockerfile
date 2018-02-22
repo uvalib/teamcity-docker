@@ -25,14 +25,14 @@ RUN \curl -sSL https://rvm.io/mpapis.asc | gpg --import -
 RUN \curl -sSL https://get.rvm.io | /bin/bash -s stable
 
 # install ruby
-RUN /bin/bash -l -c "rvm requirements ruby-1.9.3-p551 ruby-2.4.2"
+RUN /bin/bash -l -c "rvm requirements ruby-1.9.3-p551 ruby-2.4.3"
 RUN /bin/bash -l -c "rvm install ruby-1.9.3-p551"
-RUN /bin/bash -l -c "rvm install 2.4.2"
+RUN /bin/bash -l -c "rvm install 2.4.3"
 
 
 # install go
-RUN wget -c https://storage.googleapis.com/golang/go1.9.linux-amd64.tar.gz
-RUN tar -C /usr/local -xvzf go1.9.linux-amd64.tar.gz && rm go1.9.linux-amd64.tar.gz
+RUN wget -c https://storage.googleapis.com/golang/go1.10.linux-amd64.tar.gz
+RUN tar -C /usr/local -xvzf go1.10.linux-amd64.tar.gz && rm go1.10.linux-amd64.tar.gz
 RUN ln -s /lib/x86_64-linux-gnu/libdevmapper.so.1.02.1 /lib/x86_64-linux-gnu/libdevmapper.so.1.02
 
 # install the deploy scripting and keys
@@ -53,9 +53,7 @@ COPY config/dotdocker-config.json /root/.docker/config.json
 COPY bin/docker /usr/local/bin/
 
 # install docker-compose
-run wget -c -O /usr/local/bin/docker-compose https://github.com/docker/compose/releases/download/1.14.0/docker-compose-`uname -s`-`uname -m`
-RUN chmod +x /usr/local/bin/docker-compose
+RUN wget -c -O /usr/local/bin/docker-compose https://github.com/docker/compose/releases/download/1.14.0/docker-compose-`uname -s`-`uname -m` && chmod +x /usr/local/bin/docker-compose
 
 # create command links
-RUN ln -s /usr/local/go/bin/go /usr/local/bin/go
-RUN ln -s /usr/local/go/bin/gofmt /usr/local/bin/gofmt
+RUN ln -s /usr/local/go/bin/go /usr/local/bin/go && ln -s /usr/local/go/bin/gofmt /usr/local/bin/gofmt
