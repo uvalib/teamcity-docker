@@ -25,10 +25,8 @@ RUN \curl -sSL https://rvm.io/mpapis.asc | gpg --import -
 RUN \curl -sSL https://get.rvm.io | /bin/bash -s stable
 
 # install ruby
-RUN /bin/bash -l -c "rvm requirements ruby-1.9.3-p551 ruby-2.4.3"
-RUN /bin/bash -l -c "rvm install ruby-1.9.3-p551"
+RUN /bin/bash -l -c "rvm requirements ruby-2.4.3"
 RUN /bin/bash -l -c "rvm install 2.4.3"
-
 
 # install go
 RUN wget -c https://storage.googleapis.com/golang/go1.10.linux-amd64.tar.gz
