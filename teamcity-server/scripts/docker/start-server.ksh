@@ -12,6 +12,9 @@ INSTANCE=teamcity-server
 NAMESPACE=jetbrains
 HOST_FS=/shareddockerfs/teamcity
 
+# pull base image to ensure we have the latest
+docker pull $NAMESPACE/$INSTANCE
+
 # taken from blog pages
 TEAMCITY_SERVER_MEM_OPTS="-Xmx4g -XX:ReservedCodeCacheSize=350m" 
 
