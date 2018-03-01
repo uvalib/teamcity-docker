@@ -10,10 +10,13 @@ echo "*****************************************"
 # set the definitions
 INSTANCE=teamcity-server
 NAMESPACE=jetbrains
+#TAG=latest
+TAG=2017.2.2
+
 HOST_FS=/shareddockerfs/teamcity
 
-# pull base image to ensure we have the latest
-docker pull $NAMESPACE/$INSTANCE
+# pull base image to ensure we have the correct one
+#docker pull $NAMESPACE/$INSTANCE:$TAG
 
 # taken from blog pages
 TEAMCITY_SERVER_MEM_OPTS="-Xmx4g -XX:ReservedCodeCacheSize=350m" 
@@ -29,4 +32,4 @@ docker run -d -p 8080:8111 --name $INSTANCE \
    -e TEAMCITY_SERVER_MEM_OPTS="$TEAMCITY_SERVER_MEM_OPTS" \
    -v $HOST_FS/datadir:/data/teamcity_server/datadir \
    -v $HOST_FS/logs:/opt/teamcity/logs \
-   $NAMESPACE/$INSTANCE
+   $NAMESPACE/$INSTANCE:$TAG

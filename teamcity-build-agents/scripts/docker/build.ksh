@@ -11,8 +11,12 @@ echo "*****************************************"
 INSTANCE=uva-teamcity-agent
 NAMESPACE=uvadave
 
+# which version of the agent do we want
+#TAG=latest
+TAG=2017.2.2
+
 # pull base image to ensure we have the latest
-docker pull jetbrains/teamcity-minimal-agent:latest
+docker pull jetbrains/teamcity-minimal-agent:$TAG
 
 # build the image
 docker build -t $NAMESPACE/$INSTANCE .

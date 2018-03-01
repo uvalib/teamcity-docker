@@ -13,8 +13,10 @@ echo "starting agent on $DOCKER_HOST"
 echo "*****************************************"
 
 # set the definitions
-INSTANCE=uva-teamcity-agent
-NAMESPACE=uvadave
+INSTANCE=teamcity-minimal-agent
+NAMESPACE=jetbrains
+#TAG=latest
+TAG=2017.2.2
 
 TEAMCITY_HOST=http://teamcity.lib.virginia.edu:8080/
 HOST_FS=/shareddockerfs/teamcity/agents
@@ -33,4 +35,4 @@ docker run -d --name ${agent} \
    -v $HOST_FS/conf/${1}:/data/teamcity_agent/conf \
    -v $HOST_FS/logs/${1}:/opt/buildagent/logs \
    -e AGENT_NAME=${agent} \
-   -e SERVER_URL=$TEAMCITY_HOST $NAMESPACE/$INSTANCE
+   -e SERVER_URL=$TEAMCITY_HOST $NAMESPACE/$INSTANCE:$TAG
