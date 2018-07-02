@@ -13,7 +13,7 @@ NAMESPACE=uvadave
 
 # which version of the agent do we want
 #TAG=latest
-TAG=2017.2.2
+TAG=2017.2.4
 
 # pull base image to ensure we have the latest
 docker pull jetbrains/teamcity-minimal-agent:$TAG
