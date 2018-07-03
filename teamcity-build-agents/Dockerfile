@@ -43,10 +43,6 @@ RUN mkdir /root/.ssh
 COPY config/ssh-config /root/.ssh/config
 COPY config/ssh-known_hosts /root/.ssh/known_hosts
 
-# install .docker configuration stuf
-RUN mkdir /root/.docker
-COPY config/dotdocker-config.json /root/.docker/config.json
-
 # install docker binary
 COPY bin/docker /usr/local/bin/
 
@@ -55,3 +51,7 @@ RUN wget -c -O /usr/local/bin/docker-compose https://github.com/docker/compose/r
 
 # create command links
 RUN ln -s /usr/local/go/bin/go /usr/local/bin/go && ln -s /usr/local/go/bin/gofmt /usr/local/bin/gofmt
+
+#
+# end of file
+#
