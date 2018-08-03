@@ -33,6 +33,9 @@ RUN wget -c https://storage.googleapis.com/golang/go1.10.linux-amd64.tar.gz
 RUN tar -C /usr/local -xvzf go1.10.linux-amd64.tar.gz && rm go1.10.linux-amd64.tar.gz
 RUN ln -s /lib/x86_64-linux-gnu/libdevmapper.so.1.02.1 /lib/x86_64-linux-gnu/libdevmapper.so.1.02
 
+# install npm
+RUN apt-get install -y npm
+
 # install the deploy scripting and keys
 RUN mkdir -p $AGENT_HOME/build-deploy-scripts
 COPY build-deploy-scripts/ $AGENT_HOME/build-deploy-scripts
