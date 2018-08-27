@@ -11,7 +11,7 @@ echo "*****************************************"
 INSTANCE=teamcity-server
 NAMESPACE=jetbrains
 #TAG=latest
-TAG=2017.2.4
+TAG=2018.1.1
 
 HOST_FS=/shareddockerfs/teamcity
 
