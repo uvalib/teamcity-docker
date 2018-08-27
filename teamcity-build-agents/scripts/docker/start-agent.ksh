@@ -16,7 +16,9 @@ echo "*****************************************"
 INSTANCE=uva-teamcity-agent
 NAMESPACE=uvadave
 
-TEAMCITY_HOST=http://teamcity.lib.virginia.edu:8080/
+TEAMCITY_HOST=https://teamcity.lib.virginia.edu
+#TEAMCITY_HOST=http://teamcity.lib.virginia.edu:8080
+#TEAMCITY_HOST=https://alb-production-926896572.us-east-1.elb.amazonaws.com
 HOST_FS=/shareddockerfs/teamcity/agents
 
 agent=agent${1}
