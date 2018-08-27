@@ -1,6 +1,9 @@
 Host github.com
   IdentityFile /home/teamcity/build-deploy-scripts/keys/dev_deploy
 
+Host gitlab.com
+  IdentityFile /home/teamcity/build-deploy-scripts/keys/dev_deploy
+
 Host geoblacklight.lib.virginia.edu
   IdentityFile /home/teamcity/build-deploy-scripts/keys/dev_deploy
 
