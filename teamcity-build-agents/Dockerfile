@@ -29,8 +29,8 @@ RUN /bin/bash -l -c "rvm requirements ruby-2.4.3"
 RUN /bin/bash -l -c "rvm install 2.4.3"
 
 # install go
-RUN wget -c https://storage.googleapis.com/golang/go1.10.linux-amd64.tar.gz
-RUN tar -C /usr/local -xvzf go1.10.linux-amd64.tar.gz && rm go1.10.linux-amd64.tar.gz
+RUN wget -c https://storage.googleapis.com/golang/go1.11.linux-amd64.tar.gz
+RUN tar -C /usr/local -xvzf go1.11.linux-amd64.tar.gz && rm go1.11.linux-amd64.tar.gz
 RUN ln -s /lib/x86_64-linux-gnu/libdevmapper.so.1.02.1 /lib/x86_64-linux-gnu/libdevmapper.so.1.02
 
 # install npm
