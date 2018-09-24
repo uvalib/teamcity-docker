@@ -34,7 +34,7 @@ RUN tar -C /usr/local -xvzf go1.11.linux-amd64.tar.gz && rm go1.11.linux-amd64.t
 RUN ln -s /lib/x86_64-linux-gnu/libdevmapper.so.1.02.1 /lib/x86_64-linux-gnu/libdevmapper.so.1.02
 
 # install npm
-RUN apt-get install -y npm
+RUN apt-get -y update && apt-get install -y npm
 
 # install the deploy scripting and keys
 RUN mkdir -p $AGENT_HOME/build-deploy-scripts
@@ -47,7 +47,7 @@ COPY config/ssh-config /root/.ssh/config
 COPY config/ssh-known_hosts /root/.ssh/known_hosts
 
 # install docker binary
-COPY bin/docker /usr/local/bin/
+COPY bin/docker-17.09.1 /usr/local/bin/docker
 
 # install docker-compose
 RUN wget -c -O /usr/local/bin/docker-compose https://github.com/docker/compose/releases/download/1.14.0/docker-compose-`uname -s`-`uname -m` && chmod +x /usr/local/bin/docker-compose
