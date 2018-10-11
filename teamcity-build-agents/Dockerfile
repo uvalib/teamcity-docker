@@ -1,4 +1,4 @@
-FROM jetbrains/teamcity-minimal-agent:2017.2.4
+FROM jetbrains/teamcity-minimal-agent:2018.1.1
 
 ENV AGENT_HOME /home/teamcity
 RUN mkdir $AGENT_HOME
@@ -35,6 +35,11 @@ RUN ln -s /lib/x86_64-linux-gnu/libdevmapper.so.1.02.1 /lib/x86_64-linux-gnu/lib
 
 # install npm
 RUN apt-get -y update && apt-get install -y npm
+
+# install yarn
+RUN \curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+RUN \echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+RUN apt-get update && apt-get install yarn
 
 # install the deploy scripting and keys
 RUN mkdir -p $AGENT_HOME/build-deploy-scripts
