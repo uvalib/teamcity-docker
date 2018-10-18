@@ -33,13 +33,28 @@ RUN wget -c https://storage.googleapis.com/golang/go1.11.linux-amd64.tar.gz
 RUN tar -C /usr/local -xvzf go1.11.linux-amd64.tar.gz && rm go1.11.linux-amd64.tar.gz
 RUN ln -s /lib/x86_64-linux-gnu/libdevmapper.so.1.02.1 /lib/x86_64-linux-gnu/libdevmapper.so.1.02
 
+# create golang command links
+RUN ln -s /usr/local/go/bin/go /usr/local/bin/go && ln -s /usr/local/go/bin/gofmt /usr/local/bin/gofmt
+
+# install docker binary
+COPY bin/docker-17.09.1 /usr/local/bin/docker
+
+# install docker-compose
+RUN wget -c -O /usr/local/bin/docker-compose https://github.com/docker/compose/releases/download/1.14.0/docker-compose-`uname -s`-`uname -m` && chmod +x /usr/local/bin/docker-compose
+
 # install npm
-RUN apt-get -y update && apt-get install -y npm
+#RUN apt-get -y update && apt-get install -y npm
+# install nodejs
+RUN \curl -sL https://deb.nodesource.com/setup_8.x | bash -
+RUN apt-get update && apt-get install -y nodejs
 
 # install yarn
 RUN \curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
 RUN \echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 RUN apt-get update && apt-get install yarn
+
+# install vue-cli
+RUN npm install -g @vue/cli && npm install -g @vue/cli-service
 
 # install the deploy scripting and keys
 RUN mkdir -p $AGENT_HOME/build-deploy-scripts
@@ -50,15 +65,6 @@ RUN chmod 600 build-deploy-scripts/keys/*_deploy
 RUN mkdir /root/.ssh
 COPY config/ssh-config /root/.ssh/config
 COPY config/ssh-known_hosts /root/.ssh/known_hosts
-
-# install docker binary
-COPY bin/docker-17.09.1 /usr/local/bin/docker
-
-# install docker-compose
-RUN wget -c -O /usr/local/bin/docker-compose https://github.com/docker/compose/releases/download/1.14.0/docker-compose-`uname -s`-`uname -m` && chmod +x /usr/local/bin/docker-compose
-
-# create command links
-RUN ln -s /usr/local/go/bin/go /usr/local/bin/go && ln -s /usr/local/go/bin/gofmt /usr/local/bin/gofmt
 
 #
 # end of file
