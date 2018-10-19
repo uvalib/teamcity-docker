@@ -56,15 +56,15 @@ RUN apt-get update && apt-get install yarn
 # install vue-cli
 RUN npm install -g @vue/cli && npm install -g @vue/cli-service
 
-# install the deploy scripting and keys
-RUN mkdir -p $AGENT_HOME/build-deploy-scripts
-COPY build-deploy-scripts/ $AGENT_HOME/build-deploy-scripts
-RUN chmod 600 build-deploy-scripts/keys/*_deploy
-
 # install ssh configuration stuff
 RUN mkdir /root/.ssh
 COPY config/ssh-config /root/.ssh/config
 COPY config/ssh-known_hosts /root/.ssh/known_hosts
+
+# install the deploy scripting and keys
+RUN mkdir -p $AGENT_HOME/build-deploy-scripts
+COPY build-deploy-scripts/ $AGENT_HOME/build-deploy-scripts
+RUN chmod 600 build-deploy-scripts/keys/*_deploy
 
 #
 # end of file
