@@ -56,6 +56,9 @@ RUN apt-get update && apt-get install yarn
 # install vue-cli
 RUN npm install -g @vue/cli && npm install -g @vue/cli-service
 
+# install terraform binary
+COPY bin/terraform-0.11.9 /usr/local/bin/terraform
+
 # install ssh configuration stuff
 RUN mkdir /root/.ssh
 COPY config/ssh-config /root/.ssh/config
