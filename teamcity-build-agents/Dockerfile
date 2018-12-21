@@ -56,8 +56,11 @@ RUN apt-get update && apt-get install yarn
 # install vue-cli
 RUN npm install -g @vue/cli && npm install -g @vue/cli-service
 
+# install python3 version of pip (pip3)
+RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python3 get-pip.py && rm get-pip.py
+
 # install terraform binary
-COPY bin/terraform-0.11.9 /usr/local/bin/terraform
+COPY bin/terraform-0.11.11 /usr/local/bin/terraform
 
 # install ssh configuration stuff
 RUN mkdir /root/.ssh
