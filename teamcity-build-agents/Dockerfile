@@ -1,4 +1,4 @@
-FROM jetbrains/teamcity-minimal-agent:2018.1.1
+FROM jetbrains/teamcity-minimal-agent:2018.2.1
 
 ENV AGENT_HOME /home/teamcity
 RUN mkdir $AGENT_HOME
@@ -12,16 +12,17 @@ WORKDIR $AGENT_HOME
 RUN apt-get -y update && apt-get install -y apt-transport-https software-properties-common
 
 # install openjdk ppa for ancient java 7
-RUN add-apt-repository ppa:openjdk-r/ppa && apt-get -y update
+#RUN add-apt-repository ppa:openjdk-r/ppa && apt-get -y update
 
 # install required build tools / nokogiri compatibility
-RUN apt-get install -y libxslt-dev libxml2-dev libcurl3-dev git wget tar vim libmysqlclient-dev libltdl7 openjdk-7-jdk --fix-missing
+RUN apt-get install -y libxslt-dev libxml2-dev libcurl3-dev git wget tar vim libmysqlclient-dev libltdl7 --fix-missing
 
 # install java support tools
-RUN apt-get install -y maven
+#RUN apt-get install -y maven
 
 # install rvm
 RUN \curl -sSL https://rvm.io/mpapis.asc | gpg --import -
+RUN \curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -
 RUN \curl -sSL https://get.rvm.io | /bin/bash -s stable
 
 # install ruby
@@ -58,6 +59,9 @@ RUN npm install -g @vue/cli && npm install -g @vue/cli-service
 
 # install python3 version of pip (pip3)
 RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python3 get-pip.py && rm get-pip.py
+
+# install rsync tool
+RUN apt-get install -y rsync
 
 # install terraform binary
 COPY bin/terraform-0.11.11 /usr/local/bin/terraform
