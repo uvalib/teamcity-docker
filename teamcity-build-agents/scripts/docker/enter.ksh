@@ -13,7 +13,7 @@ echo "entering on $DOCKER_HOST"
 echo "*****************************************"
 
 # set the definitions
-INSTANCE=$1
+INSTANCE=agent$1
 
 CID=$(docker ps -f name=$INSTANCE|tail -1|awk '{print $1}')
 if [ -n "$CID" ]; then
