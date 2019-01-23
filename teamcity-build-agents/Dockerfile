@@ -43,8 +43,6 @@ COPY bin/docker-17.09.1 /usr/local/bin/docker
 # install docker-compose
 RUN wget -c -O /usr/local/bin/docker-compose https://github.com/docker/compose/releases/download/1.14.0/docker-compose-`uname -s`-`uname -m` && chmod +x /usr/local/bin/docker-compose
 
-# install npm
-#RUN apt-get -y update && apt-get install -y npm
 # install nodejs
 RUN \curl -sL https://deb.nodesource.com/setup_8.x | bash -
 RUN apt-get update && apt-get install -y nodejs
@@ -62,6 +60,9 @@ RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python3 get-pip.p
 
 # install rsync tool
 RUN apt-get install -y rsync
+
+# instal Ansible
+RUN apt-get update && apt-get install -y ansible
 
 # install terraform binary
 COPY bin/terraform-0.11.11 /usr/local/bin/terraform
