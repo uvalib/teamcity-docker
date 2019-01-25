@@ -15,7 +15,7 @@ RUN apt-get -y update && apt-get install -y apt-transport-https software-propert
 #RUN add-apt-repository ppa:openjdk-r/ppa && apt-get -y update
 
 # install required build tools / nokogiri compatibility
-RUN apt-get install -y libxslt-dev libxml2-dev libcurl3-dev git wget tar vim libmysqlclient-dev libltdl7 --fix-missing
+RUN apt-get install -y libxslt-dev libxml2-dev libcurl3-dev git wget tar vim zip libmysqlclient-dev libltdl7 rsync --fix-missing
 
 # install java support tools
 #RUN apt-get install -y maven
@@ -30,8 +30,8 @@ RUN /bin/bash -l -c "rvm requirements ruby-2.4.3"
 RUN /bin/bash -l -c "rvm install 2.4.3"
 
 # install go
-RUN wget -c https://storage.googleapis.com/golang/go1.11.linux-amd64.tar.gz
-RUN tar -C /usr/local -xvzf go1.11.linux-amd64.tar.gz && rm go1.11.linux-amd64.tar.gz
+RUN wget -c https://storage.googleapis.com/golang/go1.11.5.linux-amd64.tar.gz
+RUN tar -C /usr/local -xvzf go1.11.5.linux-amd64.tar.gz && rm go1.11.5.linux-amd64.tar.gz
 RUN ln -s /lib/x86_64-linux-gnu/libdevmapper.so.1.02.1 /lib/x86_64-linux-gnu/libdevmapper.so.1.02
 
 # create golang command links
@@ -58,11 +58,11 @@ RUN npm install -g @vue/cli && npm install -g @vue/cli-service
 # install python3 version of pip (pip3)
 RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python3 get-pip.py && rm get-pip.py
 
-# install rsync tool
-RUN apt-get install -y rsync
-
 # instal Ansible
 RUN apt-get update && apt-get install -y ansible
+
+# instal tools for Jason
+RUN apt-get update && apt-get install -y cmake maven
 
 # install terraform binary
 COPY bin/terraform-0.11.11 /usr/local/bin/terraform
