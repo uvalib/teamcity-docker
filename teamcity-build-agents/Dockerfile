@@ -1,4 +1,4 @@
-FROM jetbrains/teamcity-minimal-agent:2018.2.1
+FROM jetbrains/teamcity-minimal-agent:2018.2.2
 
 ENV AGENT_HOME /home/teamcity
 RUN mkdir $AGENT_HOME
@@ -17,8 +17,8 @@ RUN apt-get -y update && apt-get install -y apt-transport-https software-propert
 # install required build tools / nokogiri compatibility
 RUN apt-get install -y libxslt-dev libxml2-dev libcurl3-dev git wget tar vim zip libmysqlclient-dev libltdl7 rsync --fix-missing
 
-# install java support tools
-#RUN apt-get install -y maven
+# install development support tools
+RUN apt-get update && apt-get install -y cmake maven nasm
 
 # install rvm
 RUN \curl -sSL https://rvm.io/mpapis.asc | gpg --import -
@@ -62,7 +62,7 @@ RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python3 get-pip.p
 RUN apt-get update && apt-get install -y ansible
 
 # instal tools for Jason
-RUN apt-get update && apt-get install -y cmake maven
+#RUN apt-get update && apt-get install -y cmake maven
 
 # install terraform binary
 COPY bin/terraform-0.11.11 /usr/local/bin/terraform
