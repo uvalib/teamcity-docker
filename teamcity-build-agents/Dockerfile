@@ -9,7 +9,7 @@ WORKDIR $AGENT_HOME
 #
 
 # update the package list
-RUN apt-get -y update && apt-get install -y apt-transport-https software-properties-common
+RUN apt-get -y update && apt-get install -y apt-transport-https software-properties-common tzdata
 
 # install openjdk ppa for ancient java 7
 #RUN add-apt-repository ppa:openjdk-r/ppa && apt-get -y update
@@ -61,8 +61,8 @@ RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python3 get-pip.p
 # instal Ansible
 RUN apt-get update && apt-get install -y ansible
 
-# instal tools for Jason
-#RUN apt-get update && apt-get install -y cmake maven
+# instal tools for AWS
+RUN apt-get update && apt-get install -y awscli
 
 # install terraform binary
 COPY bin/terraform-0.11.11 /usr/local/bin/terraform
