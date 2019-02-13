@@ -41,7 +41,7 @@ RUN ln -s /usr/local/go/bin/go /usr/local/bin/go && ln -s /usr/local/go/bin/gofm
 COPY bin/docker-17.09.1 /usr/local/bin/docker
 
 # install docker-compose
-RUN wget -c -O /usr/local/bin/docker-compose https://github.com/docker/compose/releases/download/1.14.0/docker-compose-`uname -s`-`uname -m` && chmod +x /usr/local/bin/docker-compose
+#RUN wget -c -O /usr/local/bin/docker-compose https://github.com/docker/compose/releases/download/1.14.0/docker-compose-`uname -s`-`uname -m` && chmod +x /usr/local/bin/docker-compose
 
 # install nodejs
 RUN \curl -sL https://deb.nodesource.com/setup_8.x | bash -
@@ -62,7 +62,7 @@ RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python3 get-pip.p
 RUN apt-get update && apt-get install -y ansible
 
 # instal tools for AWS
-RUN apt-get update && apt-get install -y awscli
+RUN apt-get update && apt-get install -y awscli ccrypt
 
 # install terraform binary
 COPY bin/terraform-0.11.11 /usr/local/bin/terraform
