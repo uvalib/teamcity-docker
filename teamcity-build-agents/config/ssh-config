@@ -1,17 +1,3 @@
-Host github.com
-  IdentityFile /home/teamcity/build-deploy-scripts/keys/dev_deploy
-
-Host gitlab.com
-  IdentityFile /home/teamcity/build-deploy-scripts/keys/dev_deploy
-
-Host geoblacklight.lib.virginia.edu
-  IdentityFile /home/teamcity/build-deploy-scripts/keys/dev_deploy
-
-Host libsvr35.lib.virginia.edu
-  IdentityFile /home/teamcity/build-deploy-scripts/keys/dev_deploy
-
-Host libsvr36.lib.virginia.edu
-  IdentityFile /home/teamcity/build-deploy-scripts/keys/dev_deploy
-
-Host avalontest.lib.virginia.edu
+Host *
+  StrictHostKeyChecking no
   IdentityFile /home/teamcity/build-deploy-scripts/keys/dev_deploy

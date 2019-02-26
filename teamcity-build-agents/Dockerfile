@@ -70,7 +70,6 @@ COPY bin/terraform-0.11.11 /usr/local/bin/terraform
 # install ssh configuration stuff
 RUN mkdir /root/.ssh
 COPY config/ssh-config /root/.ssh/config
-COPY config/ssh-known_hosts /root/.ssh/known_hosts
 
 # install the deploy scripting and keys
 RUN mkdir -p $AGENT_HOME/build-deploy-scripts
