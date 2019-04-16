@@ -1,4 +1,4 @@
-FROM jetbrains/teamcity-minimal-agent:2018.2.2
+FROM jetbrains/teamcity-minimal-agent:2018.2.4
 
 ENV AGENT_HOME /home/teamcity
 RUN mkdir $AGENT_HOME
