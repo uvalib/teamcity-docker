@@ -62,7 +62,7 @@ RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python3 get-pip.p
 RUN apt-get update && apt-get install -y ansible
 
 # instal tools for AWS
-RUN apt-get update && apt-get install -y awscli ccrypt
+RUN apt-get update && apt-get install -y awscli ccrypt && pip3 install awscli --upgrade
 
 # install terraform binary
 COPY bin/terraform-0.11.11 /usr/local/bin/terraform
