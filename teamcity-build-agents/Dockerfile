@@ -65,7 +65,7 @@ RUN apt-get update && apt-get install -y ansible
 RUN apt-get update && apt-get install -y awscli ccrypt && pip3 install awscli --upgrade
 
 # install terraform binary
-COPY bin/terraform-0.11.11 /usr/local/bin/terraform
+COPY bin/terraform-0.11.14 /usr/local/bin/terraform
 
 # install ssh configuration stuff
 RUN mkdir /root/.ssh
