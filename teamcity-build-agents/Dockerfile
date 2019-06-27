@@ -1,4 +1,4 @@
-FROM jetbrains/teamcity-minimal-agent:2018.2.4
+FROM jetbrains/teamcity-minimal-agent:2019.1
 
 ENV AGENT_HOME /home/teamcity
 RUN mkdir $AGENT_HOME
@@ -18,7 +18,7 @@ RUN apt-get -y update && apt-get install -y apt-transport-https software-propert
 RUN apt-get install -y libxslt-dev libxml2-dev libcurl3-dev git wget tar vim zip libmysqlclient-dev libltdl7 rsync --fix-missing
 
 # install development support tools
-RUN apt-get update && apt-get install -y cmake maven nasm
+RUN apt-get install -y cmake nasm
 
 # install rvm
 RUN \curl -sSL https://rvm.io/mpapis.asc | gpg --import -

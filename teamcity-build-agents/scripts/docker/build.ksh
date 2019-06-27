@@ -16,7 +16,8 @@ NAMESPACE=uvadave
 #TAG=2017.2.4
 #TAG=2018.1.1
 #TAG=2018.2.1
-TAG=2018.2.4
+#TAG=2018.2.4
+TAG=2019.1
 
 # pull base image to ensure we have the latest
 docker pull jetbrains/teamcity-minimal-agent:$TAG
