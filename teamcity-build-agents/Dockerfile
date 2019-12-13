@@ -67,6 +67,9 @@ RUN apt-get update && apt-get install -y awscli ccrypt && pip3 install awscli --
 # install terraform binary
 COPY bin/terraform-0.11.14 /usr/local/bin/terraform
 
+# special for Mike, move me later
+RUN apt-get update -y && apt-get install -y maven; exit 0
+
 # install ssh configuration stuff
 RUN mkdir /root/.ssh
 COPY config/ssh-config /root/.ssh/config
