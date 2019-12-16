@@ -20,10 +20,11 @@ NAMESPACE=uvadave
 TAG=2019.1
 
 # pull base image to ensure we have the latest
-docker pull jetbrains/teamcity-minimal-agent:$TAG
+#docker pull jetbrains/teamcity-minimal-agent:$TAG
 
 # build the image
-docker build -t $NAMESPACE/$INSTANCE .
+#docker build -t $NAMESPACE/$INSTANCE .
+docker build -f teamcity-build-agents/package/Dockerfile -t $NAMESPACE/$INSTANCE .
 
 # return status
 exit $?

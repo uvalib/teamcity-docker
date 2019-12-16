@@ -38,7 +38,7 @@ RUN ln -s /lib/x86_64-linux-gnu/libdevmapper.so.1.02.1 /lib/x86_64-linux-gnu/lib
 RUN ln -s /usr/local/go/bin/go /usr/local/bin/go && ln -s /usr/local/go/bin/gofmt /usr/local/bin/gofmt
 
 # install docker binary
-COPY bin/docker-17.09.1 /usr/local/bin/docker
+COPY teamcity-build-agents/bin/docker-17.09.1 /usr/local/bin/docker
 
 # install docker-compose
 #RUN wget -c -O /usr/local/bin/docker-compose https://github.com/docker/compose/releases/download/1.14.0/docker-compose-`uname -s`-`uname -m` && chmod +x /usr/local/bin/docker-compose
@@ -65,14 +65,14 @@ RUN apt-get update && apt-get install -y ansible
 RUN apt-get update && apt-get install -y awscli ccrypt && pip3 install awscli --upgrade
 
 # install terraform binary
-COPY bin/terraform-0.11.14 /usr/local/bin/terraform
+COPY teamcity-build-agents/bin/terraform-0.11.14 /usr/local/bin/terraform
 
 # special for Mike, move me later
 RUN apt-get update -y && apt-get install -y maven; exit 0
 
 # install ssh configuration stuff
 RUN mkdir /root/.ssh
-COPY config/ssh-config /root/.ssh/config
+COPY teamcity-build-agents/config/ssh-config /root/.ssh/config
 
 # install the deploy scripting and keys
 RUN mkdir -p $AGENT_HOME/build-deploy-scripts
