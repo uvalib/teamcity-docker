@@ -18,6 +18,7 @@ phases:
 
   pre_build:
     commands:
+      - git clone https://$GITLAB_USER:$GITLAB_TOKEN@gitlab.com/uvalib/build-deploy-scripts.git
       - $(aws ecr get-login --no-include-email --region $AWS_REGION)
       - BUILD_VERSION=$(date --date="@$(echo $CODEBUILD_START_TIME | cut -c1-10)" +"%Y%m%d%H%M%S")
 
