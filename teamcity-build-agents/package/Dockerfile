@@ -65,7 +65,7 @@ RUN apt-get update && apt-get install -y ansible
 RUN apt-get update && apt-get install -y awscli ccrypt && pip3 install awscli --upgrade
 
 # install terraform binary
-COPY teamcity-build-agents/bin/terraform-0.11.14 /usr/local/bin/terraform
+COPY teamcity-build-agents/bin/terraform-0.12.21 /usr/local/bin/terraform
 
 # special for Mike, move me later
 RUN apt-get update -y && apt-get install -y maven; exit 0
