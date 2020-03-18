@@ -1,4 +1,4 @@
-FROM jetbrains/teamcity-minimal-agent:2019.1
+FROM jetbrains/teamcity-minimal-agent:2019.2.1
 
 ENV AGENT_HOME /home/teamcity
 RUN mkdir $AGENT_HOME
@@ -30,8 +30,8 @@ RUN /bin/bash -l -c "rvm requirements ruby-2.4.3"
 RUN /bin/bash -l -c "rvm install 2.4.3"
 
 # install go
-RUN wget -c https://storage.googleapis.com/golang/go1.13.linux-amd64.tar.gz
-RUN tar -C /usr/local -xvzf go1.13.linux-amd64.tar.gz && rm go1.13.linux-amd64.tar.gz
+RUN wget -c https://storage.googleapis.com/golang/go1.14.linux-amd64.tar.gz
+RUN tar -C /usr/local -xvzf go1.14.linux-amd64.tar.gz && rm go1.14.linux-amd64.tar.gz
 RUN ln -s /lib/x86_64-linux-gnu/libdevmapper.so.1.02.1 /lib/x86_64-linux-gnu/libdevmapper.so.1.02
 
 # create golang command links
@@ -44,7 +44,9 @@ COPY teamcity-build-agents/bin/docker-17.09.1 /usr/local/bin/docker
 #RUN wget -c -O /usr/local/bin/docker-compose https://github.com/docker/compose/releases/download/1.14.0/docker-compose-`uname -s`-`uname -m` && chmod +x /usr/local/bin/docker-compose
 
 # install nodejs
-RUN \curl -sL https://deb.nodesource.com/setup_8.x | bash -
+#RUN \curl -sL https://deb.nodesource.com/setup_8.x | bash -
+#RUN apt-get update && apt-get install -y nodejs
+RUN \curl -sL https://deb.nodesource.com/setup_10.x | bash -
 RUN apt-get update && apt-get install -y nodejs
 
 # install yarn
