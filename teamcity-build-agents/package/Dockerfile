@@ -1,5 +1,6 @@
-FROM jetbrains/teamcity-minimal-agent:2019.2.1
+FROM jetbrains/teamcity-minimal-agent:2020.2.1
 
+USER root
 ENV AGENT_HOME /home/teamcity
 RUN mkdir $AGENT_HOME
 WORKDIR $AGENT_HOME
@@ -58,6 +59,7 @@ RUN apt-get update && apt-get install yarn
 RUN npm install -g @vue/cli && npm install -g @vue/cli-service
 
 # install python3 version of pip (pip3)
+RUN apt-get install python3-distutils python3-apt
 RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python3 get-pip.py && rm get-pip.py
 
 # instal Ansible
@@ -67,7 +69,7 @@ RUN apt-get update && apt-get install -y ansible
 RUN apt-get update && apt-get install -y awscli ccrypt && pip3 install awscli --upgrade
 
 # install terraform binary
-COPY teamcity-build-agents/bin/terraform-0.12.21 /usr/local/bin/terraform
+COPY teamcity-build-agents/bin/terraform-0.13.5 /usr/local/bin/terraform
 
 # special for Mike, move me later
 RUN apt-get update -y && apt-get install -y maven; exit 0
