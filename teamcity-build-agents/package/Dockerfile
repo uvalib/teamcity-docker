@@ -69,7 +69,7 @@ RUN apt-get update && apt-get install -y ansible
 RUN apt-get update && apt-get install -y awscli ccrypt && pip3 install awscli --upgrade
 
 # install terraform
-RUN wget -c https://releases.hashicorp.com/terraform/0.14.6/terraform_0.14.6_linux_arm64.zip && unzip terraform_0.14.6_linux_arm64.zip
+RUN wget -c https://releases.hashicorp.com/terraform/0.14.6/terraform_0.14.6_linux_amd64.zip && unzip terraform_0.14.6_linux_amd64.zip
 RUN mv terraform /usr/local/bin/terraform
 
 # special for Mike, move me later
