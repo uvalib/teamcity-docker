@@ -1,4 +1,4 @@
-FROM jetbrains/teamcity-minimal-agent:2020.2.1
+FROM jetbrains/teamcity-minimal-agent:2020.2.2
 
 USER root
 ENV AGENT_HOME /home/teamcity
@@ -56,7 +56,7 @@ RUN \echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/source
 RUN apt-get update && apt-get install yarn
 
 # install vue-cli
-RUN npm install -g @vue/cli && npm install -g @vue/cli-service
+#RUN npm install -g @vue/cli && npm install -g @vue/cli-service
 
 # install python3 version of pip (pip3)
 RUN apt-get install python3-distutils python3-apt
@@ -69,7 +69,7 @@ RUN apt-get update && apt-get install -y ansible
 RUN apt-get update && apt-get install -y awscli ccrypt && pip3 install awscli --upgrade
 
 # install terraform
-RUN wget -c https://releases.hashicorp.com/terraform/0.13.5/terraform_0.13.5_linux_arm64.zip && unzip terraform_0.13.5_linux_arm64.zip
+RUN wget -c https://releases.hashicorp.com/terraform/0.14.6/terraform_0.14.6_linux_arm64.zip && unzip terraform_0.14.6_linux_arm64.zip
 RUN mv terraform /usr/local/bin/terraform
 
 # special for Mike, move me later
