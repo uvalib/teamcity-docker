@@ -16,7 +16,7 @@ RUN apt-get -y update && apt-get install -y apt-transport-https software-propert
 #RUN add-apt-repository ppa:openjdk-r/ppa && apt-get -y update
 
 # install required build tools / nokogiri compatibility
-RUN apt-get install -y libxslt-dev libxml2-dev libcurl3-dev git wget tar vim zip libmysqlclient-dev libltdl7 rsync --fix-missing
+RUN apt-get install -y libxslt-dev libxml2-dev libcurl3-dev git wget tar vim zip libmysqlclient-dev libltdl7 rsync jq --fix-missing
 
 # install development support tools
 RUN apt-get install -y cmake nasm
@@ -31,8 +31,8 @@ RUN /bin/bash -l -c "rvm requirements ruby-2.4.3"
 RUN /bin/bash -l -c "rvm install 2.4.3"
 
 # install go
-RUN wget -c https://golang.org/dl/go1.15.6.linux-amd64.tar.gz	
-RUN tar -C /usr/local -xvzf go1.15.6.linux-amd64.tar.gz && rm go1.15.6.linux-amd64.tar.gz
+RUN wget -c https://golang.org/dl/go1.16.2.linux-amd64.tar.gz	
+RUN tar -C /usr/local -xvzf go1.16.2.linux-amd64.tar.gz && rm go1.16.2.linux-amd64.tar.gz
 RUN ln -s /lib/x86_64-linux-gnu/libdevmapper.so.1.02.1 /lib/x86_64-linux-gnu/libdevmapper.so.1.02
 
 # create golang command links
@@ -69,7 +69,7 @@ RUN apt-get update && apt-get install -y ansible
 RUN apt-get update && apt-get install -y awscli ccrypt && pip3 install awscli --upgrade
 
 # install terraform
-RUN wget -c https://releases.hashicorp.com/terraform/0.14.6/terraform_0.14.6_linux_amd64.zip && unzip terraform_0.14.6_linux_amd64.zip
+RUN wget -c https://releases.hashicorp.com/terraform/0.14.8/terraform_0.14.8_linux_amd64.zip && unzip terraform_0.14.8_linux_amd64.zip
 RUN mv terraform /usr/local/bin/terraform
 
 # special for Mike, move me later
