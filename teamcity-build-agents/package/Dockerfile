@@ -59,7 +59,7 @@ RUN apt-get update && apt-get install yarn
 #RUN npm install -g @vue/cli && npm install -g @vue/cli-service
 
 # install python3 version of pip (pip3)
-RUN apt-get install python3-distutils python3-apt
+RUN apt-get install python3-distutils python3-apt libselinux-python3
 RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python3 get-pip.py && rm get-pip.py
 
 # instal Ansible
@@ -69,7 +69,7 @@ RUN apt-get update && apt-get install -y ansible
 RUN apt-get update && apt-get install -y awscli ccrypt && pip3 install awscli --upgrade
 
 # install terraform
-RUN wget -c https://releases.hashicorp.com/terraform/1.0.6/terraform_1.0.6_linux_amd64.zip && unzip terraform_1.0.6_linux_amd64.zip
+RUN wget -c https://releases.hashicorp.com/terraform/1.1.7/terraform_1.1.7_linux_amd64.zip && unzip terraform_1.1.7_linux_amd64.zip
 RUN mv terraform /usr/local/bin/terraform
 
 # special for Mike, move me later
