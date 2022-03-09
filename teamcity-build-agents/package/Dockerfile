@@ -1,4 +1,4 @@
-FROM jetbrains/teamcity-minimal-agent:2020.2.2
+FROM jetbrains/teamcity-minimal-agent:2021.2.2
 
 USER root
 ENV AGENT_HOME /home/teamcity
@@ -53,13 +53,13 @@ RUN apt-get update && apt-get install -y nodejs
 # install yarn
 RUN \curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
 RUN \echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-RUN apt-get update && apt-get install yarn
+RUN apt-get update && apt-get install -y yarn
 
 # install vue-cli
 #RUN npm install -g @vue/cli && npm install -g @vue/cli-service
 
 # install python3 version of pip (pip3)
-RUN apt-get install python3-distutils python3-apt libselinux-python3
+RUN apt-get install -y python3-distutils python3-apt python3-selinux
 RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python3 get-pip.py && rm get-pip.py
 
 # instal Ansible
