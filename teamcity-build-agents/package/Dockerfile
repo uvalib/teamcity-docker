@@ -31,8 +31,8 @@ RUN /bin/bash -l -c "rvm requirements ruby-2.4.3"
 RUN /bin/bash -l -c "rvm install 2.4.3"
 
 # install go
-RUN wget -c https://golang.org/dl/go1.16.2.linux-amd64.tar.gz	
-RUN tar -C /usr/local -xvzf go1.16.2.linux-amd64.tar.gz && rm go1.16.2.linux-amd64.tar.gz
+RUN wget -c https://golang.org/dl/go1.17.6.linux-amd64.tar.gz	
+RUN tar -C /usr/local -xvzf go1.17.6.linux-amd64.tar.gz && rm go1.17.6.linux-amd64.tar.gz
 RUN ln -s /lib/x86_64-linux-gnu/libdevmapper.so.1.02.1 /lib/x86_64-linux-gnu/libdevmapper.so.1.02
 
 # create golang command links
