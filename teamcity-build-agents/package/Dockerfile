@@ -31,9 +31,9 @@ RUN /bin/bash -l -c "rvm requirements ruby-2.4.3"
 RUN /bin/bash -l -c "rvm install 2.4.3"
 
 # install go
-RUN wget -c https://golang.org/dl/go1.17.6.linux-amd64.tar.gz	
-RUN tar -C /usr/local -xvzf go1.17.6.linux-amd64.tar.gz && rm go1.17.6.linux-amd64.tar.gz
-RUN ln -s /lib/x86_64-linux-gnu/libdevmapper.so.1.02.1 /lib/x86_64-linux-gnu/libdevmapper.so.1.02
+RUN wget -c https://golang.org/dl/go1.18.linux-amd64.tar.gz	
+RUN tar -C /usr/local -xvzf go1.18.linux-amd64.tar.gz && rm go1.18.linux-amd64.tar.gz
+#RUN ln -s /lib/x86_64-linux-gnu/libdevmapper.so.1.02.1 /lib/x86_64-linux-gnu/libdevmapper.so.1.02
 
 # create golang command links
 RUN ln -s /usr/local/go/bin/go /usr/local/bin/go && ln -s /usr/local/go/bin/gofmt /usr/local/bin/gofmt
@@ -47,7 +47,9 @@ COPY teamcity-build-agents/bin/docker-17.09.1 /usr/local/bin/docker
 # install nodejs
 #RUN \curl -sL https://deb.nodesource.com/setup_8.x | bash -
 #RUN apt-get update && apt-get install -y nodejs
-RUN \curl -sL https://deb.nodesource.com/setup_10.x | bash -
+#RUN \curl -sL https://deb.nodesource.com/setup_10.x | bash -
+#RUN apt-get update && apt-get install -y nodejs
+RUN \curl -sL https://deb.nodesource.com/setup_14.x | bash -
 RUN apt-get update && apt-get install -y nodejs
 
 # install yarn
@@ -59,7 +61,7 @@ RUN apt-get update && apt-get install -y yarn
 #RUN npm install -g @vue/cli && npm install -g @vue/cli-service
 
 # install python3 version of pip (pip3)
-RUN apt-get install -y python3-distutils python3-apt python3-selinux
+RUN apt-get install -y python3-distutils python3-apt
 RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python3 get-pip.py && rm get-pip.py
 
 # instal Ansible
