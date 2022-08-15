@@ -1,4 +1,4 @@
-FROM jetbrains/teamcity-minimal-agent:2022.04
+FROM jetbrains/teamcity-minimal-agent:2022.04.3
 
 USER root
 ENV AGENT_HOME /home/teamcity
@@ -31,9 +31,8 @@ RUN /bin/bash -l -c "rvm requirements ruby-2.7.6"
 RUN /bin/bash -l -c "rvm install 2.7.6"
 
 # install go
-RUN wget -c https://golang.org/dl/go1.18.linux-amd64.tar.gz	
-RUN tar -C /usr/local -xvzf go1.18.linux-amd64.tar.gz && rm go1.18.linux-amd64.tar.gz
-#RUN ln -s /lib/x86_64-linux-gnu/libdevmapper.so.1.02.1 /lib/x86_64-linux-gnu/libdevmapper.so.1.02
+RUN wget -c https://golang.org/dl/go1.19.linux-amd64.tar.gz	
+RUN tar -C /usr/local -xvzf go1.19.linux-amd64.tar.gz && rm go1.19.linux-amd64.tar.gz
 
 # create golang command links
 RUN ln -s /usr/local/go/bin/go /usr/local/bin/go && ln -s /usr/local/go/bin/gofmt /usr/local/bin/gofmt
@@ -57,9 +56,6 @@ RUN \curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
 RUN \echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 RUN apt-get update && apt-get install -y yarn
 
-# install vue-cli
-#RUN npm install -g @vue/cli && npm install -g @vue/cli-service
-
 # install python3 version of pip (pip3)
 RUN apt-get install -y python3-distutils python3-apt
 RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python3 get-pip.py && rm get-pip.py
@@ -71,7 +67,7 @@ RUN apt-get update && apt-get install -y ansible
 RUN apt-get update && apt-get install -y awscli ccrypt && pip3 install awscli --upgrade
 
 # install terraform
-RUN wget -c https://releases.hashicorp.com/terraform/1.1.9/terraform_1.1.9_linux_amd64.zip && unzip terraform_1.1.9_linux_amd64.zip
+RUN wget -c https://releases.hashicorp.com/terraform/1.2.7/terraform_1.2.7_linux_amd64.zip && unzip terraform_1.2.7_linux_amd64.zip
 RUN mv terraform /usr/local/bin/terraform
 
 # special for Mike, move me later
