@@ -1,4 +1,4 @@
-FROM jetbrains/teamcity-minimal-agent:2022.04.3
+FROM jetbrains/teamcity-minimal-agent:2022.04.4
 
 USER root
 ENV AGENT_HOME /home/teamcity
@@ -27,12 +27,12 @@ RUN \curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -
 RUN \curl -sSL https://get.rvm.io | /bin/bash -s stable
 
 # install ruby
-RUN /bin/bash -l -c "rvm requirements ruby-2.7.6"
-RUN /bin/bash -l -c "rvm install 2.7.6"
+#RUN /bin/bash -l -c "rvm requirements ruby-2.7.6"
+#RUN /bin/bash -l -c "rvm install 2.7.6"
 
 # install go
-RUN wget -c https://golang.org/dl/go1.19.linux-amd64.tar.gz	
-RUN tar -C /usr/local -xvzf go1.19.linux-amd64.tar.gz && rm go1.19.linux-amd64.tar.gz
+RUN wget -c https://golang.org/dl/go1.19.1.linux-amd64.tar.gz	
+RUN tar -C /usr/local -xvzf go1.19.1.linux-amd64.tar.gz && rm go1.19.1.linux-amd64.tar.gz
 
 # create golang command links
 RUN ln -s /usr/local/go/bin/go /usr/local/bin/go && ln -s /usr/local/go/bin/gofmt /usr/local/bin/gofmt
@@ -44,10 +44,6 @@ COPY teamcity-build-agents/bin/docker-17.09.1 /usr/local/bin/docker
 #RUN wget -c -O /usr/local/bin/docker-compose https://github.com/docker/compose/releases/download/1.14.0/docker-compose-`uname -s`-`uname -m` && chmod +x /usr/local/bin/docker-compose
 
 # install nodejs
-#RUN \curl -sL https://deb.nodesource.com/setup_8.x | bash -
-#RUN apt-get update && apt-get install -y nodejs
-#RUN \curl -sL https://deb.nodesource.com/setup_10.x | bash -
-#RUN apt-get update && apt-get install -y nodejs
 RUN \curl -sL https://deb.nodesource.com/setup_14.x | bash -
 RUN apt-get update && apt-get install -y nodejs
 
@@ -67,7 +63,7 @@ RUN apt-get update && apt-get install -y ansible
 RUN apt-get update && apt-get install -y awscli ccrypt && pip3 install awscli --upgrade
 
 # install terraform
-RUN wget -c https://releases.hashicorp.com/terraform/1.2.7/terraform_1.2.7_linux_amd64.zip && unzip terraform_1.2.7_linux_amd64.zip
+RUN wget -c https://releases.hashicorp.com/terraform/1.2.9/terraform_1.2.9_linux_amd64.zip && unzip terraform_1.2.9_linux_amd64.zip
 RUN mv terraform /usr/local/bin/terraform
 
 # special for Mike, move me later
