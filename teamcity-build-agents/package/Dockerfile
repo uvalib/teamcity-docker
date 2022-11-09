@@ -1,4 +1,4 @@
-FROM jetbrains/teamcity-minimal-agent:2022.04.4
+FROM jetbrains/teamcity-minimal-agent:2022.10
 
 USER root
 ENV AGENT_HOME /home/teamcity
@@ -31,8 +31,8 @@ RUN \curl -sSL https://get.rvm.io | /bin/bash -s stable
 #RUN /bin/bash -l -c "rvm install 2.7.6"
 
 # install go
-RUN wget -c https://golang.org/dl/go1.19.1.linux-amd64.tar.gz	
-RUN tar -C /usr/local -xvzf go1.19.1.linux-amd64.tar.gz && rm go1.19.1.linux-amd64.tar.gz
+RUN wget -c https://golang.org/dl/go1.19.3.linux-amd64.tar.gz	
+RUN tar -C /usr/local -xvzf go1.19.3.linux-amd64.tar.gz && rm go1.19.3.linux-amd64.tar.gz
 
 # create golang command links
 RUN ln -s /usr/local/go/bin/go /usr/local/bin/go && ln -s /usr/local/go/bin/gofmt /usr/local/bin/gofmt
@@ -63,7 +63,7 @@ RUN apt-get update && apt-get install -y ansible
 RUN apt-get update && apt-get install -y awscli ccrypt && pip3 install awscli --upgrade
 
 # install terraform
-RUN wget -c https://releases.hashicorp.com/terraform/1.2.9/terraform_1.2.9_linux_amd64.zip && unzip terraform_1.2.9_linux_amd64.zip
+RUN wget -c https://releases.hashicorp.com/terraform/1.3.4/terraform_1.3.4_linux_amd64.zip && unzip terraform_1.3.4_linux_amd64.zip
 RUN mv terraform /usr/local/bin/terraform
 
 # special for Mike, move me later
