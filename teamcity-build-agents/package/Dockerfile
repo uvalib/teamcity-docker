@@ -1,4 +1,4 @@
-FROM jetbrains/teamcity-minimal-agent:2023.05.2
+FROM jetbrains/teamcity-minimal-agent:2023.05.3
 
 USER root
 ENV AGENT_HOME /home/teamcity
@@ -63,7 +63,7 @@ RUN apt-get update && apt-get install -y ansible
 RUN apt-get update && apt-get install -y awscli ccrypt && pip3 install awscli --upgrade
 
 # install terraform
-RUN wget -c https://releases.hashicorp.com/terraform/1.5.5/terraform_1.5.5_linux_amd64.zip && unzip terraform_1.5.5_linux_amd64.zip
+RUN wget -c https://releases.hashicorp.com/terraform/1.5.6/terraform_1.5.6_linux_amd64.zip && unzip terraform_1.5.6_linux_amd64.zip
 RUN mv terraform /usr/local/bin/terraform
 
 # special for Mike, move me later
