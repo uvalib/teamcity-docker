@@ -1,4 +1,4 @@
-FROM jetbrains/teamcity-minimal-agent:2023.05.3
+FROM jetbrains/teamcity-minimal-agent:2023.05.4
 
 USER root
 ENV AGENT_HOME /home/teamcity
@@ -10,7 +10,7 @@ WORKDIR $AGENT_HOME
 #
 
 # update the package list
-RUN apt-get -y update && apt-get install -y apt-transport-https software-properties-common tzdata
+RUN apt-get -y update && apt-get -y upgrade && apt-get install -y apt-transport-https software-properties-common tzdata
 
 # install openjdk ppa for ancient java 7
 #RUN add-apt-repository ppa:openjdk-r/ppa && apt-get -y update
@@ -22,17 +22,17 @@ RUN apt-get install -y libxslt-dev libxml2-dev libcurl3-dev git wget tar vim zip
 RUN apt-get install -y cmake nasm
 
 # install rvm
-RUN \curl -sSL https://rvm.io/mpapis.asc | gpg --import -
-RUN \curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -
-RUN \curl -sSL https://get.rvm.io | /bin/bash -s stable
+#RUN \curl -sSL https://rvm.io/mpapis.asc | gpg --import -
+#RUN \curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -
+#RUN \curl -sSL https://get.rvm.io | /bin/bash -s stable
 
 # install ruby
 #RUN /bin/bash -l -c "rvm requirements ruby-2.7.6"
 #RUN /bin/bash -l -c "rvm install 2.7.6"
 
 # install go
-RUN wget -c https://golang.org/dl/go1.21.0.linux-amd64.tar.gz	
-RUN tar -C /usr/local -xvzf go1.21.0.linux-amd64.tar.gz && rm go1.21.0.linux-amd64.tar.gz
+RUN wget -c https://golang.org/dl/go1.21.4.linux-amd64.tar.gz	
+RUN tar -C /usr/local -xvzf go1.21.4.linux-amd64.tar.gz && rm go1.21.4.linux-amd64.tar.gz
 
 # create golang command links
 RUN ln -s /usr/local/go/bin/go /usr/local/bin/go && ln -s /usr/local/go/bin/gofmt /usr/local/bin/gofmt
@@ -52,22 +52,28 @@ RUN \curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
 RUN \echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 RUN apt-get update && apt-get install -y yarn
 
+# special for Mike, move me later
+RUN apt-get update -y && apt-get install -y maven; exit 0
+
+# install python3.9
+#RUN apt-get -y install python3.9
+
 # install python3 version of pip (pip3)
 RUN apt-get install -y python3-distutils python3-apt
 RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python3 get-pip.py && rm get-pip.py
 
+# install pipx (for Ansible)
+RUN python3 -m pip install --user pipx && python3 -m pipx ensurepath
+
 # instal Ansible
-RUN apt-get update && apt-get install -y ansible
+RUN /root/.local/bin/pipx install --include-deps ansible
 
 # instal tools for AWS
 RUN apt-get update && apt-get install -y awscli ccrypt && pip3 install awscli --upgrade
 
 # install terraform
-RUN wget -c https://releases.hashicorp.com/terraform/1.5.6/terraform_1.5.6_linux_amd64.zip && unzip terraform_1.5.6_linux_amd64.zip
+RUN wget -c https://releases.hashicorp.com/terraform/1.5.7/terraform_1.5.7_linux_amd64.zip && unzip terraform_1.5.7_linux_amd64.zip
 RUN mv terraform /usr/local/bin/terraform
-
-# special for Mike, move me later
-RUN apt-get update -y && apt-get install -y maven; exit 0
 
 # install ssh configuration stuff
 RUN mkdir /root/.ssh
