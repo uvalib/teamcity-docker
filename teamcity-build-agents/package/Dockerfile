@@ -1,4 +1,4 @@
-FROM jetbrains/teamcity-minimal-agent:2023.05.4
+FROM jetbrains/teamcity-minimal-agent:2023.11
 
 USER root
 ENV AGENT_HOME /home/teamcity
@@ -19,7 +19,7 @@ RUN apt-get -y update && apt-get -y upgrade && apt-get install -y apt-transport-
 RUN apt-get install -y libxslt-dev libxml2-dev libcurl3-dev git wget tar vim zip libmysqlclient-dev libltdl7 rsync jq --fix-missing
 
 # install development support tools
-RUN apt-get install -y cmake nasm
+RUN apt-get install -y cmake nasm maven
 
 # install rvm
 #RUN \curl -sSL https://rvm.io/mpapis.asc | gpg --import -
@@ -31,8 +31,8 @@ RUN apt-get install -y cmake nasm
 #RUN /bin/bash -l -c "rvm install 2.7.6"
 
 # install go
-RUN wget -c https://golang.org/dl/go1.21.4.linux-amd64.tar.gz	
-RUN tar -C /usr/local -xvzf go1.21.4.linux-amd64.tar.gz && rm go1.21.4.linux-amd64.tar.gz
+RUN wget -c https://golang.org/dl/go1.21.5.linux-amd64.tar.gz	
+RUN tar -C /usr/local -xvzf go1.21.5.linux-amd64.tar.gz && rm go1.21.5.linux-amd64.tar.gz
 
 # create golang command links
 RUN ln -s /usr/local/go/bin/go /usr/local/bin/go && ln -s /usr/local/go/bin/gofmt /usr/local/bin/gofmt
@@ -51,9 +51,6 @@ RUN apt-get update && apt-get install -y nodejs
 RUN \curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
 RUN \echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 RUN apt-get update && apt-get install -y yarn
-
-# special for Mike, move me later
-RUN apt-get update -y && apt-get install -y maven; exit 0
 
 # install python3.9
 #RUN apt-get -y install python3.9
