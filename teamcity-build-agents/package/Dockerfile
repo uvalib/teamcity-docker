@@ -1,4 +1,4 @@
-FROM jetbrains/teamcity-minimal-agent:2023.11
+FROM jetbrains/teamcity-minimal-agent:2023.11.4
 
 USER root
 ENV AGENT_HOME /home/teamcity
@@ -31,8 +31,8 @@ RUN apt-get install -y cmake nasm maven
 #RUN /bin/bash -l -c "rvm install 2.7.6"
 
 # install go
-RUN wget -c https://golang.org/dl/go1.21.5.linux-amd64.tar.gz	
-RUN tar -C /usr/local -xvzf go1.21.5.linux-amd64.tar.gz && rm go1.21.5.linux-amd64.tar.gz
+RUN wget -c https://golang.org/dl/go1.21.7.linux-amd64.tar.gz	
+RUN tar -C /usr/local -xvzf go1.21.7.linux-amd64.tar.gz && rm go1.21.7.linux-amd64.tar.gz
 
 # create golang command links
 RUN ln -s /usr/local/go/bin/go /usr/local/bin/go && ln -s /usr/local/go/bin/gofmt /usr/local/bin/gofmt
